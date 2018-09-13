@@ -20,4 +20,6 @@ PHP 7.0 >=
 ```sh
 $ git clone -b sprint1 https://github.com/hengkydev/dot-requirements dot_sprint1
 $ git composer install
+$ php artisan migrate:refresh --seed
 ```
+nb : artisan migrate and seed command do action similiar like 2nd Test Description above
