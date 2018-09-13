@@ -22,7 +22,7 @@ class Localization extends Controller
             case 'provinces':
                 $table  = ProvinceModel::get();
             break;
-
+            
             case 'cities':
                 $table  = CityModel::get();
             break;
