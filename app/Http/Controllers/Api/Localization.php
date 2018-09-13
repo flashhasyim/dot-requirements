@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
@@ -11,30 +10,52 @@ use App\Models\City as CityModel;
 class Localization extends Controller
 {
     public function search($type,Request $request){
+        $response   = (env('LOCAL_RESOURCES')) ? $this->searchLocal($type, $request) : $this->searchOnline($type, $request);
+        return response()->json($response);
+    }
 
+    /**
+     * Local search request implementation
+     */
+    private function searchLocal($type, $request){
         switch($type){
             case 'provinces':
-                $table  = ProvinceModel::with('cities')->get();
-
-                if($request->id){
-                    $table = $table->find($request->id);
-                }
-
-                return response()->json($table->toArray());
+                $table  = ProvinceModel::get();
             break;
 
             case 'cities':
-                $table  = CityModel::with('province')->get();
-
-                if($request->id){
-                    $table = $table->find($request->id);
-                }
-
-                return response()->json($table->toArray());
+                $table  = CityModel::get();
             break;
 
             default:
-                return response()->json("Request Not Found !");
+                return "Request Not Found !";
+            break;
+        }
+
+        if($request->id && $request->province){
+            $table = $table->where('id',$request->id)->where('province_id',$request->province)->first();
+        }else if($request->id) {
+            $table = $table->find($request->id);
+        }
+
+        return $table;
+    }
+
+    /**
+     * Online Search request implementation
+     */
+    private function searchOnline($type, $request){
+        switch($type){
+            case 'provinces':
+                return Rajaongkir::getProvince($request->id);
+            break;
+
+            case 'cities':
+                return Rajaongkir::getCity($request->id,$request->province);
+            break;
+
+            default:
+                return "Request Not Found !";
             break;
         }
     }

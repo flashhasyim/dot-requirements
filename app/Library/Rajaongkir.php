@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Response;
 
 class Rajaongkir extends \Curl\Curl
 {
-    public static function getProvince(){
+    public static function getProvince($id=null){
         $curl = new Self;
         $curl->setOpt(CURLOPT_RETURNTRANSFER , true);
         $curl->setOpt(CURLOPT_ENCODING , '');
@@ -12,7 +12,10 @@ class Rajaongkir extends \Curl\Curl
         $curl->setTimeout(30);
         $curl->setOpt(CURLOPT_HTTP_VERSION , CURL_HTTP_VERSION_1_1);
         $curl->setHeader('key', getEnv('API_RAJAONGKIR'));
-        $curl->get('https://api.rajaongkir.com/starter/province');
+
+        $curl->get('https://api.rajaongkir.com/starter/province',[
+            'id'  => $id
+        ]);
 
         if ($curl->error) {
             echo 'Error: ' . $curl->errorCode . ': ' . $curl->errorMessage . "\n";die();
@@ -21,7 +24,7 @@ class Rajaongkir extends \Curl\Curl
         return $curl->response->rajaongkir->results;
     }
 
-    public static function getCity(int $province){
+    public static function getCity($city=null,$province=null){
         $curl = new Self;
         $curl->setOpt(CURLOPT_RETURNTRANSFER , true);
         $curl->setOpt(CURLOPT_ENCODING , '');
@@ -29,7 +32,10 @@ class Rajaongkir extends \Curl\Curl
         $curl->setTimeout(30);
         $curl->setOpt(CURLOPT_HTTP_VERSION , CURL_HTTP_VERSION_1_1);
         $curl->setHeader('key', getEnv('API_RAJAONGKIR'));
-        $curl->get('https://api.rajaongkir.com/starter/city?province='.$province);
+        $curl->get('https://api.rajaongkir.com/starter/city',[
+            'id'        => $city,
+            'province'  => $province
+        ]);
 
         if ($curl->error) {
             echo 'Error: ' . $curl->errorCode . ': ' . $curl->errorMessage . "\n";die();

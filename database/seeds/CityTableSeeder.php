@@ -26,9 +26,11 @@ class CityTableSeeder extends Seeder
 
                 DB::table('city')->insert([
                     'id'            => $value->city_id,
-                    'province_id'	=> $result->id,
+                    'city_id'       => $value->city_id,
+                    'province_id'	=> $value->province_id,
+                    'province'      => $value->province,
                     'type'          => $value->type,
-                    'name'          => $value->city_name,
+                    'city_name'     => $value->city_name,
                     'postal_code'   => $value->postal_code,
                     'created_at' 	=> date('Y-m-d h:i:s'),
                     'updated_at' 	=> date('Y-m-d h:i:s')
