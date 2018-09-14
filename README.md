@@ -28,12 +28,9 @@ Integrasi dengan API province & city Rajaongkir (paket starter)
 https://rajaongkir.com/dokumentasi/starter  
   
 **cara dan hasil :**  
-```
-$ php artisan serve
-```
 kunjungi link di bawah ini untuk melihat hasil integrasi  
-http://localhost:8000/rajaongkir/province ( integration to get province list )  
-http://localhost:8000/rajaongkir/cities ( integration to get cities list )  
+http://localhost/dot_sprint1/rajaongkir/province ( integration to get province list )  
+http://localhost/dot_sprint1/rajaongkir/cities ( integration to get cities list )  
   
 ### Test - 2
 Membuat artisan command​ yg melakukan fetching API data provinsi & kota dan data  
@@ -60,7 +57,7 @@ b. [GET] /search/cities?id={city_id}
 
 #### Get data province
 ambil data province  
-http://localhost:80000/search/province
+http://localhost/dot_sprint10/search/province
 
 | Method    | Name          | Value             | Required |
 | --------- |---------------| ----------------- | -------- |
@@ -99,7 +96,7 @@ response yang di dapat apabila ada parameter **id** :
 
 #### Get data cities
 ambil data cities  
-http://localhost:80000/api/search/cities
+http://localhost/dot_sprint10/api/search/cities
 
 | Method    | Name          | Value             | Required |
 | --------- |---------------| ----------------- | -------- |
