@@ -211,6 +211,22 @@ lalu akses API pencarian seperti pada bagian **Accessing API**
 untuk menjawab test no 3
 > Membuat unit test / API test agar web service tetap reliable & maintainable  
 
+terdapat 7 test di antaranya
+ - **test signin**  
+   melakukan test login pada API
+ - **test register**  
+   melakukan test register pada API
+ - **test auth**  
+   melakukan test register dan menyipan data token pada header
+ - **test get province**  
+   melakukan test mendapatkan data semua province dengan header
+ - **test find province**  
+   melakukan test mendapatkan data 1 province dengan header
+ - **test get cities**  
+   melakukan test mendapatkan data semua cities dengan header
+ - **test find cities**  
+   melakukan test mendapatkan data 1 cities dengan header
+   
 unit test menggunakan **phpunit** dan component dari laravel  
 jalankan command di bawah ini 
 ```
