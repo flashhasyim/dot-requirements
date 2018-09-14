@@ -22,7 +22,6 @@ composer
 $ git clone -b sprint1 https://github.com/hengkydev/dot-requirements dot_sprint1
 $ cd dot_sprint1
 $ composer install
-$ php artisan key:generate
 ```
 copy file dan rename **.env.example** 
 menjadi **.env**
@@ -46,6 +45,7 @@ DB_PASSWORD=passworddatabase
 ```
 lalu jalankan command berikut
 ```sh
+$ php artisan key:generate
 $ php artisan migrate:fresh --seed
 ```
 
