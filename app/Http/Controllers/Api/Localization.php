@@ -35,8 +35,12 @@ class Localization extends Controller
 
         if($request->id && $request->province){
             $table = $table->where('id',$request->id)->where('province_id',$request->province)->first();
-        }else if($request->id) {
+        }
+        else if($request->id && !$request->province) {
             $table = $table->find($request->id);
+        }
+        else if($request->province && !$request->id) {
+            $table = $table->where('province_id',$request->province);
         }
 
         return $table;
