@@ -1,0 +1,190 @@
+{
+	"variables": [],
+	"info": {
+		"name": "dot",
+		"_postman_id": "e894d507-9e6b-d647-c3c0-be8d69ffc4f2",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "sprint1",
+			"description": "",
+			"item": [
+				{
+					"name": "Search Province",
+					"request": {
+						"url": {
+							"raw": "{{url}}/search/provinces?id=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"search",
+								"provinces"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Search Cities",
+					"request": {
+						"url": {
+							"raw": "{{url}}/search/cities?id=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"search",
+								"cities"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "All Provinces",
+					"request": {
+						"url": "{{url}}/search/provinces",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "All Cities",
+					"request": {
+						"url": "{{url}}/search/cities",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Register API",
+			"request": {
+				"url": "http://dot.job.aksa/api/register",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Hengky Irianto",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "hengky.dev@gmail.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345jos",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "c_password",
+							"value": "12345jos",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Signin API",
+			"request": {
+				"url": "http://dot.job.aksa/api/login",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "admin@gmail.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin123",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Try API",
+			"request": {
+				"url": "http://dot.job.aksa/api/details",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjIxOTMwMGMyNWE2YmQyYzJmMzE5YzA0NjQ5YWZkNDQ2YWIxMTFiZThjZDBmODQwMjI0NDY4YTc5MjkyMzhmZWZmOWJmYjA1ZDllNjlmM2ZiIn0.eyJhdWQiOiIzIiwianRpIjoiMjE5MzAwYzI1YTZiZDJjMmYzMTljMDQ2NDlhZmQ0NDZhYjExMWJlOGNkMGY4NDAyMjQ0NjhhNzkyOTIzOGZlZmY5YmZiMDVkOWU2OWYzZmIiLCJpYXQiOjE1MzY4NTc5OTIsIm5iZiI6MTUzNjg1Nzk5MiwiZXhwIjoxNTY4MzkzOTkyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.nreaoyx5U8wQMUv6CpZ2zec9rAtA8MHaraft4cnuVmFnHz1Toh3LGjgTHJo9UXm-csEZONoESd-QekTxrMUtEM-PsE7wF4PA4ILyISYQfZxx22Lb4CFr3ehi4SRsqqvVeCaMR7Ql1AH7dVS1gbpSAHgBP5NGU94s4pPXhv1Hh4J4MoFf256hjq7jWtYc9pMDUNEwQSContmOoQi3kxcyCeUErGHgb8NmRYilmei36UoAeBmt-X2lpyv2A-iEGdON6pUC1RbIh33cdLkxQTzrFhyPWOe_cEcx6Q6lsN56kb91Lt_fp1P-omtC70ubKG5K3kVvjyHg3LD147_037kGRwSJcMxN7ng3BYzvSkfIz8il4nmHSoy3ONDN81pdzz81702fRBXIWlAg2jOpMeDpZgQyBfjd276ZTwqTyCf5JMtDDpTlBZijKqln20eQ5gZ_9ZHTKB-6FXfxykl8nXiDGB0ochksB__GGJNoKAGmRMvHAvyeYJ05ZkkA6lLINbUumz8NGdCeZPYIQi8Y74ct9j_A2liHwJScwJ_D4aW9Pfd-IRqAwvTimPeh0flmoEgHjHYaQLCpdFe0Dk6fEVQzz77KLOKC4p7TXNDDisvoJReMh_ZUq4GTUfc0eG6B-J3mTGy3LczSZhIDDd6ZE0XnPlvkQwwsrhAmF-DsfGLgEOU",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
