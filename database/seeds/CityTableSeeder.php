@@ -20,7 +20,7 @@ class CityTableSeeder extends Seeder
 
         foreach($province as $result){
 
-            $city   = Rajaongkir::getCity($result->id);
+            $city   = Rajaongkir::getCity(null,$result->id);
 
             foreach($city as $value){
 
