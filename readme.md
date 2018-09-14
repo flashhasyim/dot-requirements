@@ -28,12 +28,9 @@ Integrasi dengan API province & city Rajaongkir (paket starter)
 https://rajaongkir.com/dokumentasi/starter  
   
 **cara dan hasil :**  
-```
-$ php artisan serve
-```
 kunjungi link di bawah ini untuk melihat hasil integrasi  
-http://localhost:8080/rajaongkir/province ( integration to get province list )  
-http://localhost:8080/rajaongkir/cities ( integration to get cities list )  
+http://localhost/dot_sprint1/rajaongkir/province ( integration to get province list )  
+http://localhost/dot_sprint1/rajaongkir/cities ( integration to get cities list )  
   
 ### Test - 2
 Membuat artisan command​ yg melakukan fetching API data provinsi & kota dan data  
@@ -56,15 +53,128 @@ Membuat REST API untuk pencarian provinsi & kota dengan endpoint berikut:
 a. [GET] /search/provinces?id={province_id}  
 b. [GET] /search/cities?id={city_id}
 ```  
-Data API pencarian ini mengambil dari database.      
-**cara dan hasil :**
-```sh
-$ php artisan serve
+
+
+#### Get data province
+ambil data province  
+http://localhost/dot_sprint10/search/province
+
+| Method    | Name          | Value             | Required |
+| --------- |---------------| ----------------- | -------- |
+| GET       | id            | 1                 | No       |
+
+response yang di dapat apabila tidak ada parameter **id** :  
 ```
-akses url berikut :  
-http://localhost:8080/search/provinces ( all data provinces )  
-http://localhost:8080/search/provinces?id=1 ( get detail provinces with id 1 )  
-http://localhost:8080/search/cities ( all data cities )  
-http://localhost:8080/search/cities?id=1 ( get detail cities with id 1 )  
-atau import file **postman** yang ada pada repo  
+[
+    {
+        "id": 1,
+        "province_id": 1,
+        "province": "Bali",
+        "created_at": "2018-09-13 09:43:35",
+        "updated_at": "2018-09-13 09:43:35"
+    },
+    {
+        "id": 2,
+        "province_id": 2,
+        "province": "Bangka Belitung",
+        "created_at": "2018-09-13 09:43:35",
+        "updated_at": "2018-09-13 09:43:35"
+    },
+    ....
+]
+```
+response yang di dapat apabila ada parameter **id** :  
+```
+{
+    "id": 1,
+    "province_id": 1,
+    "province": "Bali",
+    "created_at": "2018-09-13 09:43:35",
+    "updated_at": "2018-09-13 09:43:35"
+}
+```
+
+#### Get data cities
+ambil data cities  
+http://localhost/dot_sprint10/api/search/cities
+
+| Method    | Name          | Value             | Required |
+| --------- |---------------| ----------------- | -------- |
+| GET       | id            | 1                 | No       |
+| GET       | province      | 21                | No       |
+
+response yang di dapat apabila tidak ada parameter **id** dan **province** :  
+```
+[
+    {
+        "id": 1,
+        "city_id": 1,
+        "province_id": 21,
+        "province": "Nanggroe Aceh Darussalam (NAD)",
+        "type": "Kabupaten",
+        "city_name": "Aceh Barat",
+        "postal_code": "23681",
+        "created_at": "2018-09-13 09:44:05",
+        "updated_at": "2018-09-13 09:44:05"
+    },
+    {
+        "id": 2,
+        "city_id": 2,
+        "province_id": 21,
+        "province": "Nanggroe Aceh Darussalam (NAD)",
+        "type": "Kabupaten",
+        "city_name": "Aceh Barat Daya",
+        "postal_code": "23764",
+        "created_at": "2018-09-13 09:44:05",
+        "updated_at": "2018-09-13 09:44:05"
+    },
+    ....
+]
+```
+response yang di dapat apabila ada parameter **province** :  
+```
+[
+    {
+        "id": 1,
+        "city_id": 1,
+        "province_id": 21,
+        "province": "Nanggroe Aceh Darussalam (NAD)",
+        "type": "Kabupaten",
+        "city_name": "Aceh Barat",
+        "postal_code": "23681",
+        "created_at": "2018-09-13 09:44:05",
+        "updated_at": "2018-09-13 09:44:05"
+    },
+    {
+        "id": 2,
+        "city_id": 2,
+        "province_id": 21,
+        "province": "Nanggroe Aceh Darussalam (NAD)",
+        "type": "Kabupaten",
+        "city_name": "Aceh Barat Daya",
+        "postal_code": "23764",
+        "created_at": "2018-09-13 09:44:05",
+        "updated_at": "2018-09-13 09:44:05"
+    },
+    ....
+]
+```
+response yang di dapat apabila ada parameter **id** atau  
+terdapat **id** dan **province** :  
+```
+{
+    "id": 1,
+    "city_id": 1,
+    "province_id": 21,
+    "province": "Nanggroe Aceh Darussalam (NAD)",
+    "type": "Kabupaten",
+    "city_name": "Aceh Barat",
+    "postal_code": "23681",
+    "created_at": "2018-09-13 09:44:05",
+    "updated_at": "2018-09-13 09:44:05"
+}
+```
+
+untuk kemudahan akses api saya menyediakan **postman collection**  
+pada repository ini  
 [dot.postman_collection.json](dot.postman_collection.json)
