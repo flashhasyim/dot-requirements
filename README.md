@@ -15,6 +15,7 @@ Hasil pengerjaan test dari DOT indonesia untuk backend enginer **sprint 1**
 ### Requirements
 ```
 PHP >= 7.0 
+composer
 ```
 ### Quick Start & Flow
 ```sh
