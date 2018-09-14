@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('search/{type}','Api\Localization@search');
+Route::get('rajaongkir/{type}','Api\Rajaongkir@search');
 
 Route::get('/logic','Logic@quick')->name('logic.quick');
 Route::get('/shipping','Shipping@index')->name('shipping.index');

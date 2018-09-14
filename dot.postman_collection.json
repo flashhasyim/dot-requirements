@@ -12,6 +12,93 @@
 			"description": "",
 			"item": [
 				{
+					"name": "Rajaongkir",
+					"description": "",
+					"item": [
+						{
+							"name": "Search Province",
+							"request": {
+								"url": {
+									"raw": "{{url}}/rajaongkir/provinces?id=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"rajaongkir",
+										"provinces"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "Search Cities",
+							"request": {
+								"url": {
+									"raw": "{{url}}/rajaongkir/cities?id=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"rajaongkir",
+										"cities"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "All Provinces",
+							"request": {
+								"url": "{{url}}/rajaongkir/provinces",
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "All Cities",
+							"request": {
+								"url": "{{url}}/rajaongkir/cities",
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
 					"name": "Search Province",
 					"request": {
 						"url": {
@@ -94,6 +181,158 @@
 			]
 		},
 		{
+			"name": "sprint2",
+			"description": "",
+			"item": [
+				{
+					"name": "Search Province",
+					"request": {
+						"url": {
+							"raw": "{{url_sprint2}}/api/search/provinces?id=1",
+							"host": [
+								"{{url_sprint2}}"
+							],
+							"path": [
+								"api",
+								"search",
+								"provinces"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Search Cities",
+					"request": {
+						"url": {
+							"raw": "{{url_sprint2}}/api/search/cities?id=1",
+							"host": [
+								"{{url_sprint2}}"
+							],
+							"path": [
+								"api",
+								"search",
+								"cities"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "All Provinces",
+					"request": {
+						"url": "{{url_sprint2}}/api/search/provinces",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "All Cities",
+					"request": {
+						"url": "{{url_sprint2}}/api/search/cities",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Register API",
 			"request": {
 				"url": "http://dot.job.aksa/api/register",
@@ -135,7 +374,7 @@
 		{
 			"name": "Signin API",
 			"request": {
-				"url": "http://dot.job.aksa/api/login",
+				"url": "http://localhost/dot_sprint2/public/api/login",
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -162,12 +401,12 @@
 		{
 			"name": "Try API",
 			"request": {
-				"url": "http://dot.job.aksa/api/details",
-				"method": "POST",
+				"url": "http://localhost/dot_sprint2/public/api/details",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjIxOTMwMGMyNWE2YmQyYzJmMzE5YzA0NjQ5YWZkNDQ2YWIxMTFiZThjZDBmODQwMjI0NDY4YTc5MjkyMzhmZWZmOWJmYjA1ZDllNjlmM2ZiIn0.eyJhdWQiOiIzIiwianRpIjoiMjE5MzAwYzI1YTZiZDJjMmYzMTljMDQ2NDlhZmQ0NDZhYjExMWJlOGNkMGY4NDAyMjQ0NjhhNzkyOTIzOGZlZmY5YmZiMDVkOWU2OWYzZmIiLCJpYXQiOjE1MzY4NTc5OTIsIm5iZiI6MTUzNjg1Nzk5MiwiZXhwIjoxNTY4MzkzOTkyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.nreaoyx5U8wQMUv6CpZ2zec9rAtA8MHaraft4cnuVmFnHz1Toh3LGjgTHJo9UXm-csEZONoESd-QekTxrMUtEM-PsE7wF4PA4ILyISYQfZxx22Lb4CFr3ehi4SRsqqvVeCaMR7Ql1AH7dVS1gbpSAHgBP5NGU94s4pPXhv1Hh4J4MoFf256hjq7jWtYc9pMDUNEwQSContmOoQi3kxcyCeUErGHgb8NmRYilmei36UoAeBmt-X2lpyv2A-iEGdON6pUC1RbIh33cdLkxQTzrFhyPWOe_cEcx6Q6lsN56kb91Lt_fp1P-omtC70ubKG5K3kVvjyHg3LD147_037kGRwSJcMxN7ng3BYzvSkfIz8il4nmHSoy3ONDN81pdzz81702fRBXIWlAg2jOpMeDpZgQyBfjd276ZTwqTyCf5JMtDDpTlBZijKqln20eQ5gZ_9ZHTKB-6FXfxykl8nXiDGB0ochksB__GGJNoKAGmRMvHAvyeYJ05ZkkA6lLINbUumz8NGdCeZPYIQi8Y74ct9j_A2liHwJScwJ_D4aW9Pfd-IRqAwvTimPeh0flmoEgHjHYaQLCpdFe0Dk6fEVQzz77KLOKC4p7TXNDDisvoJReMh_ZUq4GTUfc0eG6B-J3mTGy3LczSZhIDDd6ZE0XnPlvkQwwsrhAmF-DsfGLgEOU",
+						"value": "Bearer {{token}}",
 						"description": ""
 					},
 					{
