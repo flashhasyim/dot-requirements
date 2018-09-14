@@ -20,8 +20,34 @@ PHP >= 7.0
 ```sh
 $ git clone -b sprint1 https://github.com/hengkydev/dot-requirements dot_sprint1
 $ composer install
-$ php artisan migrate:refresh --seed
+$ php artisan key:generate
 ```
+copy file dan rename **.env.example** 
+menjadi **.env**
+lalu ubah berberapa konfigurasi sesuai yang di butuhkan  
+```
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost/folderproject/public
+
+LOG_CHANNEL=stack
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=namadatabase
+DB_USERNAME=usernamedatabase
+DB_PASSWORD=passworddatabase
+...
+```
+lalu jalankan command berikut
+```sh
+$ php artisan migrate:fresh --seed
+```
+
+lanjut menjalankan test di bawah ini :  
 
 ### Test - 1
 Integrasi dengan API province & city Rajaongkir (paket starter)  
@@ -29,7 +55,7 @@ https://rajaongkir.com/dokumentasi/starter
   
 **cara dan hasil :**  
 kunjungi link di bawah ini untuk melihat hasil integrasi  
-http://localhost/dot_sprint1/public/rajaongkir/province ( integration to get province list )  
+http://localhost/dot_sprint1/public/rajaongkir/provinces ( integration to get province list )  
 http://localhost/dot_sprint1/public/rajaongkir/cities ( integration to get cities list )  
   
 ### Test - 2
@@ -57,7 +83,7 @@ b. [GET] /search/cities?id={city_id}
 
 #### Get data province
 ambil data province  
-http://localhost/dot_sprint1/public0/search/province
+http://localhost/dot_sprint1/public/search/provinces
 
 | Method    | Name          | Value             | Required |
 | --------- |---------------| ----------------- | -------- |
@@ -96,7 +122,7 @@ response yang di dapat apabila ada parameter **id** :
 
 #### Get data cities
 ambil data cities  
-http://localhost/dot_sprint1/public0/api/search/cities
+http://localhost/dot_sprint1/public/search/cities
 
 | Method    | Name          | Value             | Required |
 | --------- |---------------| ----------------- | -------- |
