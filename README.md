@@ -1,70 +1,219 @@
-## Technical Backend Engineer - Sprint 1
-Hasil pengerjaan test dari DOT indonesia untuk backend enginer **sprint 1**
+## Technical Backend Engineer - Sprint 2
+Hasil pengerjaan test dari DOT indonesia untuk backend enginer **sprint 2**
 
 ### Deskripsi test 
-  - Integrasi dengan API province & city Rajaongkir (paket starter)  
-    https://rajaongkir.com/dokumentasi/starter
-  - Membuat artisan command​ yg melakukan fetching API data provinsi & kota dan data  
-    di simpan ke database
-  - Membuat REST API untuk pencarian provinsi & kota dengan endpoint berikut:  
-    ```
-    a. [GET] /search/provinces?id={province_id}  
-    b. [GET] /search/cities?id={city_id}  
-    ```
-    Data API pencarian ini mengambil dari database.    
+Meningkatnya kebutuhan Web service, tim engineer memutuskan untuk membuat  
+swapable implementation​ untuk endpoint pencarian provinsi dan kota.  
+  - Membuat sumber data pencarian province & cities bisa melalui database​ atau direct  
+    API​ raja ongkir (swapable implementation). Proses swap implementasi dapat dilakukan  
+    melalui konfigurasi tanpa merubah source code yang sudah dibuat.
+  - Menyediakan API login agar endpoint pencarian hanya bisa diakses oleh authorized  
+    user saja.
+  - Membuat unit test / API test agar web service tetap reliable & maintainable  
 ### Requirements
 ```
 PHP >= 7.0 
 ```
 ### Quick Start & Flow
 ```sh
-$ git clone -b sprint1 https://github.com/hengkydev/dot-requirements dot_sprint1
+$ git clone -b sprint2 https://github.com/hengkydev/dot-requirements dot_sprint2
 $ composer install
 $ php artisan migrate:refresh --seed
+$ php artisan passport:install --force
+```
+### Accessing API
+untuk menjawab test no 2  
+> Menyediakan API login agar endpoint pencarian hanya bisa diakses oleh authorized user saja
+setiap URL API pencarian di wajibkan menggunakan token  
+karena API bersifat authenticatable 
+#### Register API
+daftar user untuk pengakesan API  
+http://localhost/folderproject/public/api/register
+
+| Method    | Name          | Value             | Required | 
+| --------- |---------------| ----------------- | -------- |
+| POST      | name          | example           | Yes      |
+| POST      | email         | example@gmail.com | Yes      |
+| POST      | password      | 12345678          | Yes      |
+| POST      | c_password    | 12345678          | Yes      |
+
+setelah register akan langsung mendapatkan token yang  
+di gunakan untuk mengakses API pencarian  
+response yang di dapat :  
+```
+{
+    "success": {
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJ...."
+    }
+}
 ```
 
-### Test - 1
-Integrasi dengan API province & city Rajaongkir (paket starter)  
-https://rajaongkir.com/dokumentasi/starter  
-  
-**cara dan hasil :**  
+#### Login API
+login user untuk pengakesan API  
+http://localhost/folderproject/public/api/login
+
+| Method    | Name          | Value             | Required |
+| --------- |---------------| ----------------- | -------- |
+| POST      | email         | example@gmail.com | Yes      |
+| POST      | password      | 12345678          | Yes      |
+
+setelah login akan langsung mendapatkan token yang  
+di gunakan untuk mengakses API pencarian  
+response yang di dapat :  
 ```
-$ php artisan serve
+{
+    "success": {
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJ...."
+    }
+}
 ```
-kunjungi link di bawah ini untuk melihat hasil integrasi  
-http://localhost:8080/rajaongkir/province ( integration to get province list )  
-http://localhost:8080/rajaongkir/cities ( integration to get cities list )  
-  
-### Test - 2
-Membuat artisan command​ yg melakukan fetching API data provinsi & kota dan data  
-di simpan ke database  
-**cara dan hasil:**
-```sh
-$ php artisan localization:dump
+#### Get data province
+ambil data province  
+http://localhost/folderproject/public/api/search/province
+
+| Method    | Name          | Value             | Required |
+| --------- |---------------| ----------------- | -------- |
+| GET       | id            | 1                 | No       |
+
+response yang di dapat apabila tidak ada parameter **id** :  
 ```
-the output will like this :  
-```sh
-Setting up dump data and seeding with Raja Ongkir API .... .
- 2/2 [============================] 100%
-Dump & seed data is done !
+[
+    {
+        "id": 1,
+        "province_id": 1,
+        "province": "Bali",
+        "created_at": "2018-09-13 09:43:35",
+        "updated_at": "2018-09-13 09:43:35"
+    },
+    {
+        "id": 2,
+        "province_id": 2,
+        "province": "Bangka Belitung",
+        "created_at": "2018-09-13 09:43:35",
+        "updated_at": "2018-09-13 09:43:35"
+    },
+    ....
+]
 ```
-Cek database untuk melihat hasil data yang telah di masukan  
-  
-### Test - 3
-Membuat REST API untuk pencarian provinsi & kota dengan endpoint berikut:  
+response yang di dapat apabila ada parameter **id** :  
 ```
-a. [GET] /search/provinces?id={province_id}  
-b. [GET] /search/cities?id={city_id}
-```  
-Data API pencarian ini mengambil dari database.      
-**cara dan hasil :**
-```sh
-$ php artisan serve
+{
+    "id": 1,
+    "province_id": 1,
+    "province": "Bali",
+    "created_at": "2018-09-13 09:43:35",
+    "updated_at": "2018-09-13 09:43:35"
+}
 ```
-akses url berikut :  
-http://localhost:8080/search/provinces ( all data provinces )  
-http://localhost:8080/search/provinces?id=1 ( get detail provinces with id 1 )  
-http://localhost:8080/search/cities ( all data cities )  
-http://localhost:8080/search/cities?id=1 ( get detail cities with id 1 )  
-atau import file **postman** yang ada pada repo  
+
+#### Get data cities
+ambil data cities  
+http://localhost/folderproject/public/api/search/cities
+
+| Method    | Name          | Value             | Required |
+| --------- |---------------| ----------------- | -------- |
+| GET       | id            | 1                 | No       |
+| GET       | province      | 21                | No       |
+
+response yang di dapat apabila tidak ada parameter **id** dan **province** :  
+```
+[
+    {
+        "id": 1,
+        "city_id": 1,
+        "province_id": 21,
+        "province": "Nanggroe Aceh Darussalam (NAD)",
+        "type": "Kabupaten",
+        "city_name": "Aceh Barat",
+        "postal_code": "23681",
+        "created_at": "2018-09-13 09:44:05",
+        "updated_at": "2018-09-13 09:44:05"
+    },
+    {
+        "id": 2,
+        "city_id": 2,
+        "province_id": 21,
+        "province": "Nanggroe Aceh Darussalam (NAD)",
+        "type": "Kabupaten",
+        "city_name": "Aceh Barat Daya",
+        "postal_code": "23764",
+        "created_at": "2018-09-13 09:44:05",
+        "updated_at": "2018-09-13 09:44:05"
+    },
+    ....
+]
+```
+response yang di dapat apabila ada parameter **province** :  
+```
+[
+    {
+        "id": 1,
+        "city_id": 1,
+        "province_id": 21,
+        "province": "Nanggroe Aceh Darussalam (NAD)",
+        "type": "Kabupaten",
+        "city_name": "Aceh Barat",
+        "postal_code": "23681",
+        "created_at": "2018-09-13 09:44:05",
+        "updated_at": "2018-09-13 09:44:05"
+    },
+    {
+        "id": 2,
+        "city_id": 2,
+        "province_id": 21,
+        "province": "Nanggroe Aceh Darussalam (NAD)",
+        "type": "Kabupaten",
+        "city_name": "Aceh Barat Daya",
+        "postal_code": "23764",
+        "created_at": "2018-09-13 09:44:05",
+        "updated_at": "2018-09-13 09:44:05"
+    },
+    ....
+]
+```
+response yang di dapat apabila ada parameter **id** atau  
+terdapat **id** dan **province** :  
+```
+{
+    "id": 1,
+    "city_id": 1,
+    "province_id": 21,
+    "province": "Nanggroe Aceh Darussalam (NAD)",
+    "type": "Kabupaten",
+    "city_name": "Aceh Barat",
+    "postal_code": "23681",
+    "created_at": "2018-09-13 09:44:05",
+    "updated_at": "2018-09-13 09:44:05"
+}
+```
+
+untuk kemudahan akses api saya menyediakan **postman collection**  
+pada repository ini  
 [dot.postman_collection.json](dot.postman_collection.json)
+
+### Swapable Implementation
+untuk menjawab test no 1
+> Membuat sumber data pencarian province & cities bisa melalui database​ atau direct API​ raja ongkir (swapable implementation). Proses swap implementasi dapat dilakukan melalui konfigurasi tanpa merubah source code yang sudah dibuat.
+
+untuk mengubah data pencarian menjadi lokal maupun menggunakan API raja ongkir  
+dengan hanya mengganti konfigurasi di lakukan langkah berikut  
+ganti konfigurasi di **.env**  
+**LOCAL_RESOURCES** ganti ke **true** untuk pencarian lokal  
+**LOCAL_RESOURCES** ganti ke **false** untuk pencarian online API    
+```
+# Custom conf for swapable implementation
+# if false then use online resources
+LOCAL_RESOURCES=true
+```
+lalu akses API pencarian seperti pada bagian **Accessing API**
+
+### Unit Testing
+untuk menjawab test no 3
+> Membuat unit test / API test agar web service tetap reliable & maintainable  
+
+unit test menggunakan **phpunit** dan component dari laravel  
+jalankan command di bawah ini 
+```
+$ vendor\bin\phpunit
+```
+
