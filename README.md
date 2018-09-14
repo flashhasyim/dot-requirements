@@ -12,15 +12,43 @@ swapable implementation​ untuk endpoint pencarian provinsi dan kota.
   - Membuat unit test / API test agar web service tetap reliable & maintainable  
 ### Requirements
 ```
-PHP >= 7.0 
+- PHP >= 7.0 
+- composer
 ```
 ### Quick Start & Flow
 ```sh
 $ git clone -b sprint2 https://github.com/hengkydev/dot-requirements dot_sprint2
+$ cd dot_sprint2
 $ composer install
-$ php artisan migrate:refresh --seed
+```
+copy file dan rename **.env.example** 
+menjadi **.env**
+lalu ubah berberapa konfigurasi sesuai yang di butuhkan  
+```
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost/folderproject/public
+
+LOG_CHANNEL=stack
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=namadatabase
+DB_USERNAME=usernamedatabase
+DB_PASSWORD=passworddatabase
+...
+```
+lalu jalankan command berikut
+```sh
+$ php artisan key:generate
+$ php artisan migrate:fresh --seed
 $ php artisan passport:install --force
 ```
+lanjut menjalankan test di bawah ini :  
+
 ### Accessing API
 untuk menjawab test no 2  
 > Menyediakan API login agar endpoint pencarian hanya bisa diakses oleh authorized user saja
@@ -69,7 +97,14 @@ response yang di dapat :
 ```
 #### Get data province
 ambil data province  
-http://localhost/folderproject/public/api/search/province
+http://localhost/folderproject/public/api/search/provinces  
+pengambilan data ini memerlukan **Header** untuk **Authorization**
+
+| Header               | Value                             |
+| -------------------- |---------------------------------- |
+| Authorization        | Bearer Token_yang_didapat         |
+| Content-Type         | application/x-www-form-urlencoded |
+| Accept               | application/json                  |
 
 | Method    | Name          | Value             | Required |
 | --------- |---------------| ----------------- | -------- |
@@ -108,7 +143,14 @@ response yang di dapat apabila ada parameter **id** :
 
 #### Get data cities
 ambil data cities  
-http://localhost/folderproject/public/api/search/cities
+http://localhost/folderproject/public/api/search/cities  
+pengambilan data ini memerlukan **Header** untuk **Authorization**
+
+| Header               | Value                             |
+| -------------------- |---------------------------------- |
+| Authorization        | Bearer Token_yang_didapat         |
+| Content-Type         | application/x-www-form-urlencoded |
+| Accept               | application/json                  |
 
 | Method    | Name          | Value             | Required |
 | --------- |---------------| ----------------- | -------- |
