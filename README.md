@@ -19,6 +19,7 @@ PHP >= 7.0
 ### Quick Start & Flow
 ```sh
 $ git clone -b sprint1 https://github.com/hengkydev/dot-requirements dot_sprint1
+$ cd dot_sprint1
 $ composer install
 $ php artisan key:generate
 ```
